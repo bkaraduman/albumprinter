@@ -16,8 +16,10 @@ namespace Albelli.Api.Application.Mapping
 
 
             CreateMap<OrderDetail, OrderDetailDto>().ReverseMap();
+
+            CreateMap<OrderRequestDto, Order>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.OrderId)).ReverseMap();
             
-            CreateMap<OrderRequestDto, Order>().ReverseMap();            
             CreateMap<OrderDetailRequestDto, OrderDetail>().ReverseMap();
         }
     }

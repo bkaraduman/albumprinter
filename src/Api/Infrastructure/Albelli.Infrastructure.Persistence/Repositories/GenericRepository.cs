@@ -50,23 +50,6 @@ namespace Albelli.Infrastructure.Persistence.Repositories
             return await dbContext.SaveChangesAsync();
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id, bool noTracking = true, params Expression<Func<T, object>>[] includes)
-        {
-            T found = await entity.FindAsync(id);
-
-            if (found == null)
-                return null;
-
-            if (noTracking)
-                dbContext.Entry(found).State = EntityState.Detached;
-
-            foreach (var include in includes)
-            {
-                dbContext.Entry(found).Reference(include).Load();
-            }
-
-            return found;
-        }
         public virtual async Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate, bool noTracking = true, params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = entity;
@@ -83,7 +66,6 @@ namespace Albelli.Infrastructure.Persistence.Repositories
 
             return await query.SingleOrDefaultAsync();
         }
-
 
         public virtual async Task<List<T>> GetList(Expression<Func<T, bool>> predicate, bool noTracking = true, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, params Expression<Func<T, object>>[] includes)
         {
@@ -122,7 +104,6 @@ namespace Albelli.Infrastructure.Persistence.Repositories
 
             return query;
         }        
-
         private static IQueryable<T> ApplyIncludes(IQueryable<T> query, Expression<Func<T, object>>[] includes)
         {
             if (includes != null)

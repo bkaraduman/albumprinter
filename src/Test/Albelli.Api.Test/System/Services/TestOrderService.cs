@@ -56,7 +56,7 @@ namespace Albelli.Api.Test.System.Services
 
             result.ShouldHaveValidationErrorFor("OrderId");            
 
-            Func<Task> act = () => orderService.Save(orderRequestDto);
+            Func<Task> act = () => orderService.Insert(orderRequestDto);
 
             // Assert
             await act.Should().ThrowAsync<ValidationException>();

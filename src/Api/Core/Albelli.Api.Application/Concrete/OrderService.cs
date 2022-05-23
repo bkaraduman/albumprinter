@@ -37,15 +37,13 @@ namespace Albelli.Api.Application.Concrete
             return result;
         }
 
-        public async Task<Guid> Save(OrderRequestDto order)
+        public async Task<Guid> Insert(OrderRequestDto order)
         {
             this._validator.Validate(order);
 
             var result = _mapper.Map<Order>(order);
 
             result.RequiredBinWidth = OrderHelper.CalculateRequiredBinWidth(GetProductTypesFromRequest(order.OrderDetails));
-            result.Id = order.OrderId;
-
             result.OrderDetails = _mapper.Map<List<OrderDetail>>(order.OrderDetails);
 
             await _orderRepository.AddAsync(result);

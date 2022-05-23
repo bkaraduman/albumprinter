@@ -5,7 +5,7 @@ namespace Albelli.Api.Application.Abstract
 {
     public interface IOrderService
     {
-        public Task<OrderDto> Get(Guid id);
-        public Task<Guid> Save(OrderRequestDto order);
+        Task<OrderDto> Get(Guid id);
+        Task<Guid> Insert(OrderRequestDto order);
     }
 }

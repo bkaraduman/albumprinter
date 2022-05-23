@@ -15,7 +15,6 @@ namespace Albelli.Api.Application.Validation
             {
                 detail.RuleFor(x => x.ProductType).InclusiveBetween(1, 5).WithMessage("Product type must be between 1 and 5!");
             });
-
         }
     }
 }

@@ -90,7 +90,7 @@ namespace Albelli.Api.Test.System.Controllers
             Guid orderId = Guid.NewGuid();
             OrderRequestDto orderRequest = null;
 
-            _orderService.Setup(repo => repo.Save(It.IsAny<OrderRequestDto>())).Callback<OrderRequestDto>(x => orderRequest = x);
+            _orderService.Setup(repo => repo.Insert(It.IsAny<OrderRequestDto>())).Callback<OrderRequestDto>(x => orderRequest = x);
 
             // Act
             var result = (OkObjectResult)await _orderController.Insert(new OrderRequestDto
@@ -107,7 +107,7 @@ namespace Albelli.Api.Test.System.Controllers
             });
 
             // Assert
-            _orderService.Verify(repo => repo.Save(It.IsAny<OrderRequestDto>()), Times.Once);
+            _orderService.Verify(repo => repo.Insert(It.IsAny<OrderRequestDto>()), Times.Once);
 
             orderRequest.OrderId.Should().Be(orderId);
         }

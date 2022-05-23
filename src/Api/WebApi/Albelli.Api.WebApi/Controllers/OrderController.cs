@@ -32,7 +32,7 @@ namespace Albelli.Api.WebApi.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Insert([FromBody] OrderRequestDto model)
         {
-            var result = await _orderService.Save(model);
+            var result = await _orderService.Insert(model);
 
             return Ok(new ApiResponseDto
             {
