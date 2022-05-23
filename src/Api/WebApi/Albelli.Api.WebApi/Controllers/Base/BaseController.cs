@@ -27,8 +27,4 @@ namespace Albelli.Api.WebApi.Controllers.Base
             }
         }
     }
-
-
-    
-
 }

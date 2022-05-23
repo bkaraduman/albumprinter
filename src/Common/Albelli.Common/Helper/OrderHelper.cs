@@ -1,10 +1,4 @@
 ﻿using Albelli.Common.Models;
-using Albelli.Common.Models.ResponseModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Albelli.Common.Helper
 {
